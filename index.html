@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniload Download</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #4b0082; /* Purple background */
+            color: #fff;
+        }
+
+        /* Header Styling */
+        .header {
+            width: 100%;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #6a0dad, #4b0082); /* Gradient purple */
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        /* Container Styling */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 70vh; /* Centers the content vertically within the viewport */
+        }
+
+        /* Loader Styling */
+        .loader {
+            border: 8px solid #fff;
+            border-top: 8px solid #6a0dad; /* Purple color */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        /* Fetching Links Text Styling */
+        .fetching-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none; /* Hidden initially */
+        }
+
+        /* Spin Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Content Styling - Hidden Initially */
+        .content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Download Button Styling */
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #6a0dad; /* Button purple color */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Hover Effect for the Button */
+        .download-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Aniload Download</h1>
+    </header>
+
+    <div class="container">
+        <!-- Loader -->
+        <div class="loader" id="loader"></div>
+        <!-- Fetching Links Message -->
+        <p class="fetching-text" id="fetchingText">Fetching links...</p>
+
+        <!-- Download Content (hidden initially) -->
+        <div class="content" id="content">
+            <h2>Download Your File</h2>
+            <p>Click the button below to download your file.</p>
+            <button class="download-btn" id="downloadBtn">Download</button>
+        </div>
+    </div>
+
+    <script>
+        // Wait for the page to load
+        window.onload = function() {
+            // Show loader initially
+            const loader = document.getElementById('loader');
+            const content = document.getElementById('content');
+            const fetchingText = document.getElementById('fetchingText');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            // Step 1: Hide the loader and show the "Fetching links..." text after 3 seconds
+            setTimeout(() => {
+                loader.style.display = 'none';
+                fetchingText.style.display = 'block';
+
+                // Step 2: Hide the "Fetching links..." text and show the content after 2 more seconds
+                setTimeout(() => {
+                    fetchingText.style.display = 'none';
+                    content.style.display = 'flex';
+                }, 2000); // 2 seconds delay
+            }, 3000); // 3 seconds delay
+
+            // Button click event to handle download
+            downloadBtn.addEventListener('click', () => {
+                // Securely trigger the download
+                const link = document.createElement('a');
+                link.href = 'https://anitoono.blogspot.com/'; // Replace this with your actual download link
+                link.download = 'yourfile.zip'; // Optional: You can specify the file name for download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        };
+    </script>
+</body>
+</html>
