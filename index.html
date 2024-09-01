@@ -94,12 +94,45 @@
             text-decoration: none;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0; /* Initially hidden */
+            transform: translateY(20px); /* Start below */
+            animation: fadeInUp 0.8s forwards; /* Animation */
         }
 
         /* Hover Effect for the Button */
         .download-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animation for Button Appearance */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer Styling */
+        .footer {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #4b0082, #6a0dad); /* Gradient purple */
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -122,6 +155,11 @@
             <button class="download-btn" id="downloadBtn">Download</button>
         </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>This site does not store any files on its server. All contents are provided by non-affiliated third parties. This site does not accept responsibility for contents hosted on third party websites. We just index those links which are already available in the internet.</p>
+    </footer>
 
     <script>
         // Wait for the page to load
@@ -148,7 +186,7 @@
             downloadBtn.addEventListener('click', () => {
                 // Securely trigger the download
                 const link = document.createElement('a');
-                link.href = 'https://anitoono.blogspot.com/'; // Replace this with your actual download link
+                link.href = 'https://example.com/yourfile.zip'; // Replace this with your actual download link
                 link.download = 'yourfile.zip'; // Optional: You can specify the file name for download
                 document.body.appendChild(link);
                 link.click();
